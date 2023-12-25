@@ -23,5 +23,4 @@ public class EmailController {
 
         return num;
     }
-
 }

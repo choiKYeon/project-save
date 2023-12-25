@@ -80,65 +80,65 @@
 <footer th:replace="~{footer :: footerFragment}"></footer>
 </body>
 </html>
-<!--이메일 인증 및 비밀번호 찾기-->
-<script>
-    const header = $("meta[name='_csrf_header']").attr('content');
-    const token = $("meta[name='_csrf']").attr('content');
+<!--&lt;!&ndash;이메일 인증 및 비밀번호 찾기&ndash;&gt;-->
+<!--<script>-->
+<!--    const header = $("meta[name='_csrf_header']").attr('content');-->
+<!--    const token = $("meta[name='_csrf']").attr('content');-->
 
-    $('#checkEmail').on('click', function(){
-        checkEmail();
-    });
+<!--    $('#checkEmail').on('click', function(){-->
+<!--        checkEmail();-->
+<!--    });-->
 
-    function checkEmail(){
-        const memberEmail = $('#memberEmail').val();
+<!--    function checkEmail(){-->
+<!--        const memberEmail = $('#memberEmail').val();-->
 
-        if(!memberEmail || memberEmail.trim() === ""){
-            alert("이메일을 입력하세요.");
-        } else {
-            $.ajax({
-                type: 'GET',
-                url: '/member/checkEmail',
-                data: {
-                    'memberEmail': memberEmail
-                },
-                dataType: "text",
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader(header, token);
-                }
-            }).done(function(result){
-                console.log("result :" + result);
-                if (result == "true") {
-                    sendEmail();
-                    alert('임시비밀번호를 전송 했습니다.');
-                    window.location.href="/auth/login";
-                } else if (result == "false") {
-                    alert('가입되지 않은 이메일입니다.');
-                }
-            }).fail(function(error){
-                alert(JSON.stringify(error));
-            })
-        }
-    }
+<!--        if(!memberEmail || memberEmail.trim() === ""){-->
+<!--            alert("이메일을 입력하세요.");-->
+<!--        } else {-->
+<!--            $.ajax({-->
+<!--                type: 'GET',-->
+<!--                url: '/member/checkEmail',-->
+<!--                data: {-->
+<!--                    'memberEmail': memberEmail-->
+<!--                },-->
+<!--                dataType: "text",-->
+<!--                beforeSend: function (xhr) {-->
+<!--                    xhr.setRequestHeader(header, token);-->
+<!--                }-->
+<!--            }).done(function(result){-->
+<!--                console.log("result :" + result);-->
+<!--                if (result == "true") {-->
+<!--                    sendEmail();-->
+<!--                    alert('임시비밀번호를 전송 했습니다.');-->
+<!--                    window.location.href="/auth/login";-->
+<!--                } else if (result == "false") {-->
+<!--                    alert('가입되지 않은 이메일입니다.');-->
+<!--                }-->
+<!--            }).fail(function(error){-->
+<!--                alert(JSON.stringify(error));-->
+<!--            })-->
+<!--        }-->
+<!--    }-->
 
-    function sendEmail(){
-        const memberEmail = $('#memberEmail').val();
+<!--    function sendEmail(){-->
+<!--        const memberEmail = $('#memberEmail').val();-->
 
-        $.ajax({
-            type: 'POST',
-            url: '/member/sendPwd',
-            data: {
-                'memberEmail' : memberEmail
-            },
-            beforeSend: function(xhr){
-                xhr.setRequestHeader(header, token);
-            },
-            error: function(error){
-                alert(JSON.stringify(error));
-            }
-        })
-    }
-</script>
-<!--이메일 인증 및 비밀번호 찾기 끝-->
+<!--        $.ajax({-->
+<!--            type: 'POST',-->
+<!--            url: '/member/sendPwd',-->
+<!--            data: {-->
+<!--                'memberEmail' : memberEmail-->
+<!--            },-->
+<!--            beforeSend: function(xhr){-->
+<!--                xhr.setRequestHeader(header, token);-->
+<!--            },-->
+<!--            error: function(error){-->
+<!--                alert(JSON.stringify(error));-->
+<!--            }-->
+<!--        })-->
+<!--    }-->
+<!--</script>-->
+<!--&lt;!&ndash;이메일 인증 및 비밀번호 찾기 끝&ndash;&gt;-->
 <!--별점 클릭 후 유지-->
 <script th:inline="javascript">
 

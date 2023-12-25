@@ -1,6 +1,5 @@
 package com.std.sbb.domain.taste.form;
 
-import com.std.sbb.global.jpa.BaseEntity;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.Getter;
